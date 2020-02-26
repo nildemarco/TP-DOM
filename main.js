@@ -68,7 +68,7 @@ let usersEdit = {
 // Funcion para editar el usuario
 
 const editUsers = (id) => {
-    fetch(`https://tp-js-2-api-wjfqxquokl.now.sh/users/:${id}`, {
+    fetch(`https://tp-js-2-api-wjfqxquokl.now.sh/users/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(usersEdit),
