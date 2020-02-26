@@ -12,13 +12,35 @@
 
 <body>
     <nav>
-        <div>Manage Employees</div>
+        <h1>Manage Employees</h1>
         <button class="add-user"><i class="material-icons">&#xE147;</i></i> Add New Employee</button>
     </nav>
     <div class="container-filter">
         <input type="text" placeholder="Filter..." name="Filter" id="filter">
     </div>
     <div id="container-table">
+
+    </div>
+    <div class="myModal noMostrar">
+        <h2>Add Employee</h2>
+        <form class="form-modal">
+            <label> Name
+                <input type="text" name="name" id="">
+            </label>
+            <label> Email
+                <input type="email" name="email" id="">
+            </label>
+            <label> Address
+                <input type="text" name="address" id="">
+            </label>
+            <label> Phone
+                <input type="number" name="phone" id="">
+            </label>
+        </form>
+        <div class="botones-modal">
+            <button>Cancel</button>
+            <button>Add</button>
+        </div>
 
     </div>
     <script src="main.js"></script>

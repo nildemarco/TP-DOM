@@ -50,4 +50,30 @@ th, td {
     color: #f44336;
 }
 
+.myModal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-modal label {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.noMostrar {
+    display: none;
+}
+/* .botones-modal {
+    align-self: flex-end;
+} */
 /* background-color: #f5f5f5; */
