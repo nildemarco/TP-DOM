@@ -12,7 +12,7 @@ nav {
     align-items: center;
     padding: 5px 15px;
 }
-.add-user {
+#add-user {
     display: flex;
     justify-content: center;
     align-items: center;
