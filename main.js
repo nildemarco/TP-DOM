@@ -1,3 +1,5 @@
+
+
 const mostrarUsers = () => {
     fetch('https://tp-js-2-api-wjfqxquokl.now.sh/users')
         .then(data => data.json())
@@ -8,12 +10,13 @@ const mostrarUsers = () => {
             const datosTabla = users.reduce((acc, curr) => {
                 return acc + `
         <tr>
-            <td><input type="checkbox" name="users" id=""></td>
+            <td><input type="checkbox" name="users" id="users"></td>
             <td>${curr.fullname}</td>
             <td>${curr.email}</td>
             <td>${curr.address}</td>
             <td>${curr.phone}</td>
-            <td><button id="botonEdit"><i class="material-icons icon-edit" title="Edit">&#xE254;</i></button>
+            <td>
+            <button id="btnEdit"><i class="material-icons icon-edit" title="Edit">&#xE254;</i></button>
             <i class="material-icons icon-delete"
          title="Delete">&#xE872;</i></td>
         </tr>`
@@ -28,7 +31,7 @@ const mostrarUsers = () => {
         <th>Adress</th>
         <th>Phone</th>
         <th>Actions</th>
-    </tr> 
+    </tr>
     ${datosTabla}
     </table>`
         })
@@ -36,15 +39,7 @@ const mostrarUsers = () => {
 
 mostrarUsers()
 
-// let nuevoUser = {
-//     fullname: 'Nil De Marco',
-//     email: 'nil@ada.com.ar',
-//     address: 'calle falsa 123',
-//     phone: '234569443'
-// }
-
 //Funcion para agregar usuario
-
 const addUsers = (nuevoUser) => {
     fetch('https://tp-js-2-api-wjfqxquokl.now.sh/users', {
         method: 'POST',
@@ -58,15 +53,7 @@ const addUsers = (nuevoUser) => {
 
 //addUsers()
 
-// let usersEdit = {
-//     fullname: 'Nils De Marco',
-//     email: 'nils@ada.com.ar',
-//     address: 'Tucuman',
-//     phone: '222222222'
-// }
-
 // Funcion para editar el usuario
-
 const editUsers = (id) => {
     fetch(`https://tp-js-2-api-wjfqxquokl.now.sh/users/${id}`, {
         method: 'PUT',
@@ -78,7 +65,6 @@ const editUsers = (id) => {
 
 }
 
-// editUsers(2)
 
 //Funcion para borrar usuarios
 const deleteUsers = (id) => {
@@ -90,15 +76,11 @@ const deleteUsers = (id) => {
     .then(usersDeleted => console.log(usersDeleted))
 }
 
-//deleteUsers(2)
-
 const botonAddOpenModal = document.getElementById("add-user")
 const modal = document.getElementById("modal")
 const botonAddCloseModal = document.getElementById("addCerrar")
 const form = document.forms[0]
 console.log(form)
-
-
 
 botonAddOpenModal.onclick = () => {
  modal.classList.remove("noMostrar");
@@ -110,14 +92,13 @@ botonAddCloseModal.onclick = () => {
 
 form.onsubmit = (e) => {
     e.preventDefault()
-    
 
     let nombre = form.elements[0].value
     let correo = form.elements[1].value
     let direccion = form.elements[2].value
     let telefono = form.elements[3].value
 
-    nuevoUser = {
+    let nuevoUser = {
         fullname: nombre,
         email: correo,
         address: direccion,
@@ -128,3 +109,20 @@ form.onsubmit = (e) => {
    mostrarUsers()
 }
 
+
+
+const btnEdit = document.getElementById("btnEdit");
+
+btnEdit.onclick = () => {
+    alert("hola");
+}
+
+const AbrirModal = (pepito) => {
+    console.log(pepito)
+    // modal.classList.remove("noMostrar");
+
+    // form.elements[0].value = fullname;
+    // form.elements[1].value = email;
+    // form.elements[2].value = address;
+    // form.elements[3].value = phone;
+}

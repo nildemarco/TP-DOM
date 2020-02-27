@@ -1,49 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round"
+    />
+    <title>TP integrador DOM</title>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" />
-    <title>TP integrador DOM </title>
-</head>
-
-<body>
+  <body>
     <nav>
-        <h1>Manage Employees</h1>
-        <button id="add-user"><i class="material-icons">&#xE147;</i> Add New Employee</button>
+      <h1>Manage Employees</h1>
+      <button id="add-user">
+        <i class="material-icons">&#xE147;</i> Add New Employee
+      </button>
     </nav>
     <div class="container-filter">
-        <input type="text" placeholder="Filter..." name="Filter" id="filter">
+      <input type="text" placeholder="Filter..." name="Filter" id="filter" />
     </div>
-    <div id="container-table">
-
-    </div>
+    <div id="container-table"></div>
     <div id="modal" class="myModal noMostrar">
-        <h2>Add Employee</h2>
-        <form class="form-modal">
-            <label> Name
-                <input type="text" name="name" id="">
-            </label>
-            <label> Email
-                <input type="email" name="email" id="">
-            </label>
-            <label> Address
-                <input type="text" name="address" id="">
-            </label>
-            <label> Phone
-                <input type="number" name="phone" id="">
-            </label>
+      <h2>Add Employee</h2>
+      <form class="form-modal">
+        <label for="name"> Name </label>
+        <input type="text" name="name" id="name" value="" />
 
-            <div class="botones-modal">
-                <button>Cancel</button>
-                <button type="submit" id="addCerrar">Add</button>
-            </div>
-        </form>
+        <label for="email"> Email </label>
+        <input type="email" name="email" id="email" value="" />
+
+        <label for="address"> Address</label>
+        <input type="text" name="address" id="address" value="" />
+
+        <label for="phone">Phone </label>
+        <input type="number" name="phone" id="phone" value="" />
+
+        <div class="botones-modal">
+          <button>Cancel</button>
+          <button type="submit" id="addCerrar">Add</button>
+        </div>
+      </form>
     </div>
     <script src="main.js"></script>
-</body>
-
+  </body>
 </html>
