@@ -1,5 +1,4 @@
 
-
 const mostrarUsers = () => {
     fetch('https://tp-js-2-api-wjfqxquokl.now.sh/users')
         .then(data => data.json())
@@ -16,7 +15,7 @@ const mostrarUsers = () => {
             <td>${curr.address}</td>
             <td>${curr.phone}</td>
             <td>
-            <button id="btnEdit"><i class="material-icons icon-edit" title="Edit">&#xE254;</i></button>
+            <button id="btn${curr.id}"><i class="material-icons icon-edit" title="Edit">&#xE254;</i></button>
             <button id="btnDelete"><i class="material-icons icon-delete"
          title="Delete">&#xE872;</i></button></td>
         </tr>`
@@ -24,17 +23,47 @@ const mostrarUsers = () => {
             }, '')
 
             contenedorTabla.innerHTML = `<table>
-    <tr>
+        <tr>
         <th><input type="checkbox" name="main" id=""></th>
         <th>Name</th>
         <th>Email</th>
         <th>Adress</th>
         <th>Phone</th>
         <th>Actions</th>
-    </tr>
-    ${datosTabla}
-    </table>`
+        </tr>
+        ${datosTabla}
+        </table>`
+
+        const btnEdit = document.getElementById("btnEdit");
+
+        btnEdit.onclick = () => {
+            modal.innerHTML = 
+            `<h2>Edit Employee</h2>
+            <form class="form-modal">
+              <label for="name"> Name </label>
+              <input type="text" name="name" id="name" value="" />
+      
+              <label for="email"> Email </label>
+              <input type="email" name="email" id="email" value="" />
+      
+              <label for="address"> Address</label>
+              <input type="text" name="address" id="address" value="" />
+      
+              <label for="phone">Phone </label>
+              <input type="number" name="phone" id="phone" value="" />
+      
+              <div class="botones-modal">
+              
+                <button>Cancel</button>
+                <button type="submit" id="addCerrar">Save</button>
+              </div>
+            </form>`
+            modal.classList.remove("noMostrar")
+            console.log()
+        }
+    
         })
+    
 }
 
 mostrarUsers()
@@ -51,7 +80,7 @@ const addUsers = (nuevoUser) => {
 
 }
 
-//addUsers()
+
 
 // Funcion para editar el usuario
 const editUsers = (id) => {
@@ -72,8 +101,8 @@ const deleteUsers = (id) => {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
     })
-    .then(data => data.json())
-    .then(usersDeleted => console.log(usersDeleted))
+        .then(data => data.json())
+        .then(usersDeleted => console.log(usersDeleted))
 }
 
 const botonAddOpenModal = document.getElementById("add-user")
@@ -83,11 +112,11 @@ const form = document.forms[0]
 console.log(form)
 
 botonAddOpenModal.onclick = () => {
- modal.classList.remove("noMostrar");
+    modal.classList.remove("noMostrar");
 }
 
 botonAddCloseModal.onclick = () => {
- modal.classList.add("noMostrar")
+    modal.classList.add("noMostrar")
 }
 
 form.onsubmit = (e) => {
@@ -105,30 +134,31 @@ form.onsubmit = (e) => {
         phone: telefono
     }
 
-   addUsers(nuevoUser)
-   mostrarUsers()
+    addUsers(nuevoUser)
+    mostrarUsers()
 }
 
+// Filtro
+
+const filtro = document.getElementById("filter")
+
+// const btnEdit = document.getElementById("btnEdit");
+// console.log(btnEdit)
 
 
-const btnEdit = document.getElementById("btnEdit");
 
 
-btnEdit.onclick = () => {
-    alert("hola");
-}
+// const AbrirModal = (pepito) => {
+//     console.log(pepito)
+//     // modal.classList.remove("noMostrar");
 
-const AbrirModal = (pepito) => {
-    console.log(pepito)
-    // modal.classList.remove("noMostrar");
+//     // form.elements[0].value = fullname;
+//     // form.elements[1].value = email;
+//     // form.elements[2].value = address;
+//     // form.elements[3].value = phone;
+// }
 
-    // form.elements[0].value = fullname;
-    // form.elements[1].value = email;
-    // form.elements[2].value = address;
-    // form.elements[3].value = phone;
-}
-
-const botonDelete = document.getElementById("btnDelete");
+// const botonDelete = document.getElementById("btnDelete");
 
 
 
