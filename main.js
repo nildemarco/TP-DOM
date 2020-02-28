@@ -15,8 +15,8 @@ const mostrarUsers = () => {
             <td>${curr.address}</td>
             <td>${curr.phone}</td>
             <td>
-            <button id="btn${curr.id}"><i class="material-icons icon-edit" title="Edit">&#xE254;</i></button>
-            <button id="btnDelete"><i class="material-icons icon-delete"
+            <button class="botonEdit" id="${curr.id}"><i class="material-icons icon-edit" title="Edit">&#xE254;</i></button>
+            <button class="botonDelete" id="${curr.id}"><i class="material-icons icon-delete"
          title="Delete">&#xE872;</i></button></td>
         </tr>`
 
@@ -34,36 +34,65 @@ const mostrarUsers = () => {
         ${datosTabla}
         </table>`
 
-        const btnEdit = document.getElementById("btnEdit");
+            const btnEdit = document.querySelectorAll(".botonEdit");
 
-        btnEdit.onclick = () => {
-            modal.innerHTML = 
-            `<h2>Edit Employee</h2>
-            <form class="form-modal">
-              <label for="name"> Name </label>
-              <input type="text" name="name" id="name" value="" />
-      
-              <label for="email"> Email </label>
-              <input type="email" name="email" id="email" value="" />
-      
-              <label for="address"> Address</label>
-              <input type="text" name="address" id="address" value="" />
-      
-              <label for="phone">Phone </label>
-              <input type="number" name="phone" id="phone" value="" />
-      
-              <div class="botones-modal">
-              
-                <button>Cancel</button>
-                <button type="submit" id="addCerrar">Save</button>
-              </div>
-            </form>`
-            modal.classList.remove("noMostrar")
-            console.log()
-        }
-    
+            btnEdit.forEach((element, ind) => {
+                element.onclick = () => {
+
+                    modal.innerHTML =
+                        `<h2>Edit Employee</h2>
+                <form class="form-modal">
+                  <label for="name">Name</label>
+                  <input type="hidden" name= "id" value="${users[ind].id}" />
+
+                  <input type="text" name="name" id="name" value="${users[ind].fullname}" />
+          
+                  <label for="email"> Email </label>
+                  <input type="email" name="email" id="email" value="${users[ind].email}" />
+          
+                  <label for="address"> Address </label>
+                  <input type="text" name="address" id="address" value="${users[ind].address}" />
+          
+                  <label for="phone"> Phone </label>
+                  <input type="number" name="phone" id="phone" value="${users[ind].phone}" />
+          
+                  <div class="botones-modal">
+                  
+                    <button>Cancel</button>
+                    <button type="submit" id="guardar">Save</button>
+                  </div>
+                </form>`
+                    modal.classList.remove("noMostrar")
+                    console.log(element.id)
+
+                    const botonEditar = getElementById("guardar")
+                    botonEditar.onclick = () = {
+                        let id = form.elements[0].value;
+                        let nombre = form.elements[1].value;
+                        let correo = form.elements[2].value;
+                        let direccion = form.elements[3].value;
+                        let telefono = form.elements[4].value;
+
+                        let usuarioEditado = {
+                            id: id,
+                            fullname: nombre,
+                            email: correo,
+                            address: direccion,
+                            phone: telefono
+                        };
+
+    editUsers(usuarioEditado);
+    mostrarUsers();
+                    }
+
+                }
+
+            });
+
+
+
         })
-    
+
 }
 
 mostrarUsers()
@@ -83,8 +112,9 @@ const addUsers = (nuevoUser) => {
 
 
 // Funcion para editar el usuario
-const editUsers = (id) => {
-    fetch(`https://tp-js-2-api-wjfqxquokl.now.sh/users/${id}`, {
+const editUsers = (userEditado) => {
+
+    fetch(`https://tp-js-2-api-wjfqxquokl.now.sh/users/${userEditado.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(usersEdit),
@@ -92,7 +122,11 @@ const editUsers = (id) => {
         .then(data => data.json())
         .then(userEditado => console.log(userEditado))
 
+
 }
+
+
+
 
 
 //Funcion para borrar usuarios
@@ -138,6 +172,8 @@ form.onsubmit = (e) => {
     mostrarUsers()
 }
 
+
+
 // Filtro
 
 const filtro = document.getElementById("filter")
@@ -148,14 +184,13 @@ const filtro = document.getElementById("filter")
 
 
 
-// const AbrirModal = (pepito) => {
-//     console.log(pepito)
-//     // modal.classList.remove("noMostrar");
 
-//     // form.elements[0].value = fullname;
-//     // form.elements[1].value = email;
-//     // form.elements[2].value = address;
-//     // form.elements[3].value = phone;
+
+// (pepito) => {
+//     console.log(pepito)
+//     modal.classList.remove("noMostrar");
+
+
 // }
 
 // const botonDelete = document.getElementById("btnDelete");
