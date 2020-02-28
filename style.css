@@ -19,8 +19,15 @@ nav {
     background-color: #5cb85c;
     border: 1px solid #4cae4c;
     color: #ffff;
-    border-radius: 5px;
+    border-radius: 3px;
     font-family:'Varela Round', sans-serif;
+}
+.material-icons {
+    padding:5px;
+}
+
+#add-user:hover {
+    background-color: #4bab4b;
 }
 
 .container-filter {
