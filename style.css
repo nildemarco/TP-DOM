@@ -20,6 +20,7 @@ nav {
     border: 1px solid #4cae4c;
     color: #ffff;
     border-radius: 5px;
+    font-family:'Varela Round', sans-serif;
 }
 
 .container-filter {
@@ -69,8 +70,16 @@ th, td {
 .myModal button{
     margin:10px;
     box-shadow: 0 0 10px;
+    font-family:'Varela Round', sans-serif;
 
 }
+
+.myModal button:hover {
+    background-color: #435d7d;
+    color: #ffff;
+}
+
+
 
 .form-modal {
     display: flex;
