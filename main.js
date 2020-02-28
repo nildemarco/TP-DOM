@@ -17,8 +17,8 @@ const mostrarUsers = () => {
             <td>${curr.phone}</td>
             <td>
             <button id="btnEdit"><i class="material-icons icon-edit" title="Edit">&#xE254;</i></button>
-            <i class="material-icons icon-delete"
-         title="Delete">&#xE872;</i></td>
+            <button id="btnDelete"><i class="material-icons icon-delete"
+         title="Delete">&#xE872;</i></button></td>
         </tr>`
 
             }, '')
@@ -113,6 +113,7 @@ form.onsubmit = (e) => {
 
 const btnEdit = document.getElementById("btnEdit");
 
+
 btnEdit.onclick = () => {
     alert("hola");
 }
@@ -126,3 +127,8 @@ const AbrirModal = (pepito) => {
     // form.elements[2].value = address;
     // form.elements[3].value = phone;
 }
+
+const botonDelete = document.getElementById("btnDelete");
+
+
+
