@@ -103,7 +103,6 @@ const addUsers = (nuevoUser) => {
         .then(data => data.json())
         .then(userAgregado => console.log(userAgregado))
 
-
         mostrarUsers();
 }
 
@@ -141,18 +140,17 @@ botonAddOpenModal.onclick = () => {
 
 botonAddCloseModal.onclick = () => {
     modal.classList.add("noMostrar")
+    alert("no mostrar")
 }
 
 form.onsubmit = (e) => {
     e.preventDefault()
-
     let nombre = form.elements[0].value
     let correo = form.elements[1].value
     let direccion = form.elements[2].value
     let telefono = form.elements[3].value
 
     let nuevoUser = {
-        id: id,
         fullname: nombre,
         email: correo,
         address: direccion,
