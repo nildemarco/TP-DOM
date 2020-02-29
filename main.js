@@ -1,4 +1,3 @@
-
 const mostrarUsers = () => {
     fetch('https://tp-js-2-api-wjfqxquokl.now.sh/users')
         .then(data => data.json())
@@ -16,7 +15,7 @@ const mostrarUsers = () => {
             <td>${curr.phone}</td>
             <td>
             <button class="botonEdit" id="${curr.id}"><i class="material-icons icon-edit" title="Edit">&#xE254;</i></button>
-            <button class="botonDelete" id="${curr.id}"><i class="material-icons icon-delete"
+            <button class="botonDelete" id="btn-${curr.id}"><i class="material-icons icon-delete"
          title="Delete">&#xE872;</i></button></td>
         </tr>`
 
@@ -35,6 +34,7 @@ const mostrarUsers = () => {
         </table>`
 
             const btnEdit = document.querySelectorAll(".botonEdit");
+            const btnDelete = document.querySelectorAll(".botonDelete");
 
             btnEdit.forEach((element, ind) => {
                 element.onclick = () => {
@@ -66,7 +66,6 @@ const mostrarUsers = () => {
                     const botonEditar = document.getElementById("guardar");
 
                     botonEditar.onclick = (e) => {
-                        debugger
                         e.preventDefault();
                         const form = document.forms[0];
                         let nombre = form.elements[0].value;
@@ -82,16 +81,44 @@ const mostrarUsers = () => {
                         };
 
                         editUsers(users[ind].id, usuarioEditado);
-                        debugger
                         modal.classList.add("noMostrar");
                         mostrarUsers();
+                    }
+                }
+            });
+            btnDelete.forEach((element, ind) => {
+                element.onclick = () => {
+
+                    modal.innerHTML =
+                        `<h2>Delete Employee</h2>
+                        <button type="button" id="closeModal" data-dismiss="modal" aria-hidden="true">×</button>
+                        <div class="bodyModal">
+                        Are you sure you want to delete these Records?
+                        This action cannot be undone.
+                        </div>
+                    <div class="footer">
+                    <button>Cancel</button>
+                    <button type="submit" id="delete">Delete</button>
+                  </div>`
+                  const closeModal = document.getElementById("closeModal")
+                    closeModal.onclick = () => {
+                        modal.classList.add("noMostrar")
+                    }
+                    modal.classList.remove("noMostrar");
+
+                    const botonDelete = document.getElementById("delete");
+
+                    botonDelete.onclick = (e) => {
+                        e.preventDefault();
+                        deleteUsers(users[ind].id);
+                        modal.classList.add("noMostrar");
                     }
                 }
             });
         })
 }
 
-mostrarUsers()
+mostrarUsers();
 
 //Funcion para agregar usuario
 const addUsers = (nuevoUser) => {
@@ -100,10 +127,8 @@ const addUsers = (nuevoUser) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(nuevoUser),
     })
-        .then(data => data.json())
-        .then(userAgregado => console.log(userAgregado))
-
-        mostrarUsers();
+    .then(data => data.json())
+    .then(userAgregado => console.log(userAgregado))
 }
 
 // Funcion para editar el usuario
@@ -124,15 +149,19 @@ const deleteUsers = (id) => {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
     })
-        .then(data => data.json())
-        .then(usersDeleted => console.log(usersDeleted))
+    .then(data => data.json())
+    .then(usersDeleted => console.log(usersDeleted))
+
+    mostrarUsers();
 }
 
 const botonAddOpenModal = document.getElementById("add-user")
 const modal = document.getElementById("modal")
 const botonAddCloseModal = document.getElementById("addCerrar")
+
 const form = document.forms[0]
-console.log(form)
+
+
 
 botonAddOpenModal.onclick = () => {
     modal.classList.remove("noMostrar");
@@ -140,8 +169,9 @@ botonAddOpenModal.onclick = () => {
 
 botonAddCloseModal.onclick = () => {
     modal.classList.add("noMostrar")
-    alert("no mostrar")
 }
+
+
 
 form.onsubmit = (e) => {
     e.preventDefault()
