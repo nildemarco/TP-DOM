@@ -82,7 +82,7 @@ const mostrarUsers = () => {
 
                         editUsers(users[ind].id, usuarioEditado);
                         modal.classList.add("noMostrar");
-                        mostrarUsers();
+
                     }
                 }
             });
@@ -100,7 +100,7 @@ const mostrarUsers = () => {
                     <button>Cancel</button>
                     <button type="submit" id="delete">Delete</button>
                   </div>`
-                  const closeModal = document.getElementById("closeModal")
+                    const closeModal = document.getElementById("closeModal")
                     closeModal.onclick = () => {
                         modal.classList.add("noMostrar")
                     }
@@ -127,8 +127,11 @@ const addUsers = (nuevoUser) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(nuevoUser),
     })
-    .then(data => data.json())
-    .then(userAgregado => console.log(userAgregado))
+        .then(data => data.json())
+        .then(userAgregado => {
+            console.log(userAgregado)
+            mostrarUsers();
+        })
 }
 
 // Funcion para editar el usuario
@@ -139,8 +142,11 @@ const editUsers = (id, userEditado) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userEditado),
     })
-    .then(data => data.json())
-    .then(userEditado => console.log(userEditado));
+        .then(data => data.json())
+        .then(userEditado => {
+            console.log(userEditado)
+            mostrarUsers();
+        });
 }
 
 //Funcion para borrar usuarios
@@ -149,10 +155,13 @@ const deleteUsers = (id) => {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
     })
-    .then(data => data.json())
-    .then(usersDeleted => console.log(usersDeleted))
+        .then(data => data.json())
+        .then(usersDeleted => {
+            console.log(usersDeleted)
+            mostrarUsers();
+        })
 
-    mostrarUsers();
+
 }
 
 const botonAddOpenModal = document.getElementById("add-user")
@@ -188,5 +197,5 @@ form.onsubmit = (e) => {
     }
 
     addUsers(nuevoUser)
-    mostrarUsers()
+
 }
