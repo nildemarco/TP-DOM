@@ -2,6 +2,8 @@
 body {
     margin: 30px 50px;
     font-family:'Varela Round', sans-serif;
+    color:#566787;
+   
 }
 
 nav {
@@ -45,6 +47,9 @@ table {
     padding: 15px;
     text-align: center;
 }
+tr td:hover {
+    background-color: #e9e9e9;
+}
 
 th, td {
     border-bottom: 1px solid #ddd;
@@ -52,41 +57,89 @@ th, td {
 
 .icon-edit {
     color: #ffc107;
+    
+   
 }
 
 .icon-delete {
     color: #f44336;
+    
 }
 
 .myModal {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: block;
     width: 300px;
-    height: 300px;
-    position: fixed;
-    top: 300px;
-    left: 600px;
+    height: auto;
+    position: relative;
+    left: 600px; 
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    padding: 30px;
-    background-color: #435d7d;
-    color: #ffff;
+    padding: 20px 30px;
+    background-color: #fff;
+    border-radius: 0 0 3px 3px;
+    text-align: center;
+    border-top: 1px solid #e4d9d9;
+    
 
+}
+.myModal input {
+    width: 80%;
+    height: 20px;
+    margin:5px;
+    border-radius: 0 0 3px 3px;
+    border-style: outset;
+    text-align: left;
+}
+#address {
+    height: 50px;
 }
 .myModal button{
-    margin:10px;
-    box-shadow: 0 0 10px;
+    margin:25px;
+    width: 70px;
+    height: 40px;
     font-family:'Varela Round', sans-serif;
+    border:none;
 
 }
 
+#guardar {
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+   
+}
+#guardar:hover {
+    background-color: #0085ae;
+}
+
+
 .myModal button:hover {
-    background-color: #435d7d;
+    background-color: #e4d9d9;
     color: #ffff;
 }
 
+#addCerrar {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    
+}
 
+#addCerrar:hover{
+    background-color: #0d900d;
+}
+
+#delete {
+    background-color: #f44336;
+}
+
+#delete:hover {
+    background-color: #9a1b12;
+}
+
+p {
+    color:#8a6d3b;
+    font-size: 14px;
+}
 
 .form-modal {
     display: flex;
@@ -94,6 +147,19 @@ th, td {
     justify-content: center;
     align-items: center;
 
+}
+
+
+#closeModalEdit, #closeModal , #closeAddEmployee {
+    size: 10px;
+    top:-9px;
+    right:-9px;
+    position:absolute;
+    cursor:pointer;
+    width:25px; 
+    height:25px;
+    background-color:#e4d9d9;
+    border-style: none;
 }
 
 .form-modal label {
@@ -105,11 +171,24 @@ th, td {
 .noMostrar {
     display: none;
 }
-/* .botones-modal {
-    align-self: flex-end;
-} */
-/* background-color: #f5f5f5; */
+
 
 .hidden {
     visibility: hidden;
 }
+
+
+#filter {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    background-color: white;
+    width: 200px;
+    height: 20px;
+    font-family:'Varela Round', sans-serif;
+   
+}
+.botonEdit, .botonDelete {
+    border:none;
+    border-radius:2px;
+   
+}
+

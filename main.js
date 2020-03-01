@@ -41,6 +41,7 @@ const mostrarUsers = () => {
 
                     modal.innerHTML =
                         `<h2>Edit Employee</h2>
+                        <button type="button" id="closeModalEdit" data-dismiss="modal" aria-hidden="true">X</button>
                 <form class="form-modal">
 
                   <label for="name">Name</label>
@@ -61,7 +62,12 @@ const mostrarUsers = () => {
                     <button type="submit" id="guardar">Save</button>
                   </div>
                 </form>`
-                    modal.classList.remove("noMostrar");
+                const closeEditModal = document.getElementById("closeModalEdit")
+                closeEditModal.onclick = () => {
+                    modal.classList.add("noMostrar")
+                }
+                modal.classList.remove("noMostrar");
+
 
                     const botonEditar = document.getElementById("guardar");
 
@@ -91,7 +97,7 @@ const mostrarUsers = () => {
 
                     modal.innerHTML =
                         `<h2>Delete Employee</h2>
-                        <button type="button" id="closeModal" data-dismiss="modal" aria-hidden="true">×</button>
+                        <button type="button" id="closeModal" data-dismiss="modal" aria-hidden="true">X</button>
                         <div class="bodyModal">
                         Are you sure you want to delete these Records?
                         This action cannot be undone.
@@ -174,6 +180,11 @@ const form = document.forms[0]
 
 botonAddOpenModal.onclick = () => {
     modal.classList.remove("noMostrar");
+    const closeAddModal = document.getElementById("closeAddEmployee")
+    closeAddModal.onclick = () => {
+        modal.classList.add("noMostrar")
+    }
+    modal.classList.remove("noMostrar");
 }
 
 botonAddCloseModal.onclick = () => {
@@ -199,3 +210,38 @@ form.onsubmit = (e) => {
     addUsers(nuevoUser)
 
 }
+
+// Funcion Filtrar
+
+// const usuarioFiltrado = document.getElementById("filter")
+
+// usuarioFiltrado.onkeypress = e => {
+//     if(e.keyCode == 13){    
+//         console.log(usuarioFiltrado.value)
+//         // const filtrarUsuarios =(value)=> {
+//             fetch(`https://tp-js-2-api-wjfqxquokl.now.sh/users?search=${usuarioFiltrado.value}`)
+//                 .then(data => data.json())
+//                 .then(users => {
+//                     console.log(users)
+//                     let arrayFiltrados = [];
+//                     arrayFiltrados = users.filter((usuario) => {
+//                    if (usuario.fullname.includes(usuarioFiltrado.value) || usuario.email.includes(usuarioFiltrado.value) || usuario.address.includes(usuarioFiltrado.value)|| usuario.phone.includes(usuarioFiltrado.value))
+//                  return arrayFiltrados
+//                 mostrarUsers(arrayFiltrados)
+                
+        
+//           })
+       
+        
+        
+         
+//                 }
+//                 )
+                
+    
+//     // }
+  
+//   } 
+// }
+
+

@@ -23,7 +23,7 @@
       </button>
     </nav>
     <div class="container-filter">
-      <input type="text" placeholder="Filter..." name="Filter" id="filter" />
+  <input type="text" placeholder="Filter..." name="Filter" id="filter"/>
     </div>
     <div id="container-table">
         
@@ -31,6 +31,7 @@
     
     <div id="modal" class="myModal noMostrar">
       <h2>Add Employee</h2>
+      <button type="button" id="closeAddEmployee" data-dismiss="modal" aria-hidden="true">X</button>
       <form class="form-modal">
         <label for="name"> Name </label>
         <input type="text" name="name" id="name" value="" />
@@ -46,7 +47,7 @@
 
         <div class="botones-modal">
         
-          <button>Cancel</button>
+          <button type="submit" id="cancel">Cancel</button>
           <button type="submit" id="addCerrar">Add</button>
         </div>
       </form>
