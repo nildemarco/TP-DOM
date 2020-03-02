@@ -206,10 +206,9 @@ botonAddOpenModal.onclick = () => {
         modal.classList.add("noMostrar")
     }
     modal.classList.remove("noMostrar");
-}
-const botonAddCloseModal = document.getElementById("addCerrar")
+    const botonAddCloseModal = document.getElementById("addCerrar")
 
-botonAddCloseModal.onclick = () => {
+     botonAddCloseModal.onclick = () => {
     modal.classList.add("noMostrar")
     const form = document.forms[0]
     form.onsubmit = (e) => {
@@ -230,6 +229,8 @@ botonAddCloseModal.onclick = () => {
     
     }
 }
+}
+
 
 
 
