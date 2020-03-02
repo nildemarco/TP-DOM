@@ -1,0 +1,46 @@
+Requisitos:
+    Se debe respetar el diseño
+    Todos los campos deben validar que los datos sean correctos y no estén vacíos
+    Buena tabulación del código
+    Usar nombres claros para las variables
+    Utilizar sólo let o const
+    Utilizar arrow functions
+    Todas las funciones que lo permitan, deben tener tests unitarios utilizando Jest, para verificar el correcto funcionamiento
+
+Para el filtro:
+    GET /users?search=:q
+    Retorna un array de personas guardadas en el servidor. Las mismas se pueden filtrar utilizando el queryParam search
+
+Crear un usuario nuevo:
+    POST /users
+
+Modificar un usuario:
+    PUT /users/:id
+
+Eliminar un usuario:
+    DELETE /users/:id
+
+Información a mostrar mediante GET /users
+    Nuevo:
+        Nombre -> (Máximo 50 carácteres)
+        Email ->  (Máximo 60 carácteres)
+        Dirección -> (Solo números, espacios y/o guiones medios. Validar el formato utilizando expresiones regulares)
+        Teléfono -> (Solo números, espacios y/o guiones medios. Validar el formato utilizando expresiones regulares)
+
+        1) crear el usuario solo si las 4 validaciones estan ok.
+
+    Para filtrar:
+        Se tendrá un solo input text y un botón filtrar
+        Cuando escribimos algo en el input y clickeamos el botón filtrar, tenemos que hacer un GET a la ruta /users pasando un queryParam search con el valor ingresado en el input.
+        Una vez que obtuvimos el array, volvemos a renderizar la tabla de users.
+
+    Eliminar:
+        Mostrar el modal que pide la confirmación si se va a eliminar el usuario o no.
+        Si -> DELETE /users/:id
+
+    Editar:
+        Mismo modal que nuevo (debe mantener las validaciones), si todos los datos son correctos:
+        PUT /users/:id
+
+
+
