@@ -33,17 +33,17 @@ const usersTable = (users) => {
 
     btnEdit.forEach((element, ind) => {
         element.onclick = () => {
-
+            modal.classList.remove("noMostrar");
             modal.innerHTML =
                 `<h2>Edit Employee</h2>
                         <button type="button" id="closeModalEdit" data-dismiss="modal" aria-hidden="true">X</button>
                 <form class="form-modal">
 
                   <label for="name">Name</label>
-                  <input type="text" minlength="5" maxlength="50" name="name" id="name" value="${users[ind].fullname}" required />
+                  <input type="text" minlength="5" maxlength="50" name="name" id="name" value="${users[ind].fullname}" required  />
 
                   <label for="email"> Email </label>
-                  <input type="email" name="email" maxlength="60" id="email" value="${users[ind].email}" required/>
+                  <input type="email" name="email" maxlength="60" id="email" value="${users[ind].email}" required />
 
                   <label for="address"> Address </label>
                   <input type="text" name="address" id="address" pattern= "[A-Za-z0-9 _-]+" value="${users[ind].address}" required />
@@ -53,7 +53,7 @@ const usersTable = (users) => {
 
                   <div class="botones-modal">
 
-                    <button id="cancelEdit">Cancel</button>
+                    <button type="button" id="cancelEdit">Cancel</button>
                     <button type="submit" id="guardar">Save</button>
                   </div>
                 </form>`
@@ -63,12 +63,11 @@ const usersTable = (users) => {
             }
 
             const cancelEditModal = document.getElementById("cancelEdit")
-            cancelEditModal.onclick = () => {
+            cancelEditModal.onclick = (e) => {
+                e.preventDefault()
                 modal.classList.add("noMostrar")
             }
-            modal.classList.remove("noMostrar");
-
-            modal.classList.remove("noMostrar");
+            
             const botonEditar = document.getElementById("guardar");
             botonEditar.onclick = (e) => {
                 e.preventDefault();
@@ -110,12 +109,13 @@ const usersTable = (users) => {
             }
 
             const closeDeleteModal = document.getElementById("cancelDelete")
-            closeDeleteModal.onclick = () => {
+            closeDeleteModal.onclick = (e) => {
+                e.preventDefault()
                 modal.classList.add("noMostrar")
             }
             modal.classList.remove("noMostrar");
 
-            modal.classList.remove("noMostrar");
+            
             const botonDelete = document.getElementById("delete");
 
             botonDelete.onclick = (e) => {
@@ -187,20 +187,20 @@ botonAddOpenModal.onclick = () => {
     <button type="button" id="closeAddEmployee" data-dismiss="modal" aria-hidden="true">X</button>
     <form class="form-modal">
       <label for="name"> Name </label>
-      <input type="text" maxlength="50" name="name" id="name" value="" required/>
+      <input type="text" maxlength="50" name="name" id="name" value=""  required />
 
       <label for="email"> Email </label>
-      <input type="email" maxlength="60" name="email" id="email" required value="" />
+      <input type="email" maxlength="60" name="email" id="email"  value=""  required/>
 
       <label for="address"> Address</label>
-      <input type="text" name="address" pattern ="[A-Za-z0-9 _-]+" id="address" required value="" />
+      <input type="text" name="address" pattern ="[A-Za-z0-9 _-]+" id="address"  value="" required />
 
       <label for="phone">Phone </label>
-      <input type="tel" name="phone" pattern="[0-9  -]+" id="phone" required value="" />
+      <input type="tel" name="phone" pattern="[0-9  -]+" id="phone"  value="" required />
 
       <div class="botones-modal">
 
-        <button type="submit" id="cancel">Cancel</button>
+        <button type="button" id="cancelAdd">Cancel</button>
         <button type="submit" id="addCerrar">Add</button>
       </div>
     </form>`
@@ -209,11 +209,17 @@ botonAddOpenModal.onclick = () => {
     closeAddModal.onclick = () => {
         modal.classList.add("noMostrar")
     }
-    modal.classList.remove("noMostrar");
+    
+    const botonCancelAdd = document.getElementById("cancelAdd")
+    botonCancelAdd.onclick = (e) => {
+        e.preventDefault()
+        modal.classList.add("noMostrar")
+    }
+
     const botonAddCloseModal = document.getElementById("addCerrar")
 
     botonAddCloseModal.onclick = () => {
-        modal.classList.add("noMostrar")
+        
         const form = document.forms[0]
         form.onsubmit = (e) => {
             e.preventDefault()
@@ -230,6 +236,8 @@ botonAddOpenModal.onclick = () => {
             }
 
             addUsers(nuevoUser)
+            modal.classList.add("noMostrar")
+           
         }
     }
 }
