@@ -172,13 +172,34 @@ const deleteUsers = (id) => {
 
 const botonAddOpenModal = document.getElementById("add-user")
 const modal = document.getElementById("modal")
-const botonAddCloseModal = document.getElementById("addCerrar")
 
-const form = document.forms[0]
+
+
 
 
 
 botonAddOpenModal.onclick = () => {
+    modal.innerHTML = ` <h2>Add Employee</h2>
+    <button type="button" id="closeAddEmployee" data-dismiss="modal" aria-hidden="true">X</button>
+    <form class="form-modal">
+      <label for="name"> Name </label>
+      <input type="text" name="name" id="name" value="" />
+
+      <label for="email"> Email </label>
+      <input type="email" name="email" id="email" value="" />
+
+      <label for="address"> Address</label>
+      <input type="text" name="address" id="address" value="" />
+
+      <label for="phone">Phone </label>
+      <input type="number" name="phone" id="phone" value="" />
+
+      <div class="botones-modal">
+      
+        <button type="submit" id="cancel">Cancel</button>
+        <button type="submit" id="addCerrar">Add</button>
+      </div>
+    </form>`
     modal.classList.remove("noMostrar");
     const closeAddModal = document.getElementById("closeAddEmployee")
     closeAddModal.onclick = () => {
@@ -186,30 +207,33 @@ botonAddOpenModal.onclick = () => {
     }
     modal.classList.remove("noMostrar");
 }
+const botonAddCloseModal = document.getElementById("addCerrar")
 
 botonAddCloseModal.onclick = () => {
     modal.classList.add("noMostrar")
-}
-
-
-
-form.onsubmit = (e) => {
-    e.preventDefault()
-    let nombre = form.elements[0].value
-    let correo = form.elements[1].value
-    let direccion = form.elements[2].value
-    let telefono = form.elements[3].value
-
-    let nuevoUser = {
-        fullname: nombre,
-        email: correo,
-        address: direccion,
-        phone: telefono
+    const form = document.forms[0]
+    form.onsubmit = (e) => {
+        e.preventDefault()
+        let nombre = form.elements[0].value
+        let correo = form.elements[1].value
+        let direccion = form.elements[2].value
+        let telefono = form.elements[3].value
+    
+        let nuevoUser = {
+            fullname: nombre,
+            email: correo,
+            address: direccion,
+            phone: telefono
+        }
+    
+        addUsers(nuevoUser)
+    
     }
-
-    addUsers(nuevoUser)
-
 }
+
+
+
+
 
 // Funcion Filtrar
 
