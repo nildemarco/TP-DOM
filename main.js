@@ -40,20 +40,20 @@ const usersTable = (users) => {
                 <form class="form-modal">
 
                   <label for="name">Name</label>
-                  <input type="text" minlength="5" name="name" id="name" value="${users[ind].fullname}" />
+                  <input type="text" minlength="5" maxlength="50" name="name" id="name" value="${users[ind].fullname}" required />
 
                   <label for="email"> Email </label>
-                  <input type="email" name="email" id="email" value="${users[ind].email}" required/>
+                  <input type="email" name="email" maxlength="60" id="email" value="${users[ind].email}" required/>
 
                   <label for="address"> Address </label>
-                  <input type="text" name="address" id="address" value="${users[ind].address}" />
+                  <input type="text" name="address" id="address" pattern= "[A-Za-z0-9 _-]+" value="${users[ind].address}" required />
 
                   <label for="phone"> Phone </label>
-                  <input type="number" name="phone" id="phone" value="${users[ind].phone}" />
+                  <input type="tel" name="phone" pattern="[0-9  -]+" id="phone" value="${users[ind].phone}" required />
 
                   <div class="botones-modal">
 
-                    <button>Cancel</button>
+                    <button id="cancelEdit">Cancel</button>
                     <button type="submit" id="guardar">Save</button>
                   </div>
                 </form>`
@@ -61,6 +61,13 @@ const usersTable = (users) => {
             closeEditModal.onclick = () => {
                 modal.classList.add("noMostrar")
             }
+
+            const cancelEditModal = document.getElementById("cancelEdit")
+            cancelEditModal.onclick = () => {
+                modal.classList.add("noMostrar")
+            }
+            modal.classList.remove("noMostrar");
+
             modal.classList.remove("noMostrar");
             const botonEditar = document.getElementById("guardar");
             botonEditar.onclick = (e) => {
@@ -94,13 +101,19 @@ const usersTable = (users) => {
                         This action cannot be undone.
                         </div>
                     <div class="footer">
-                    <button>Cancel</button>
+                    <button id="cancelDelete">Cancel</button>
                     <button type="submit" id="delete">Delete</button>
                   </div>`
             const closeModal = document.getElementById("closeModal")
             closeModal.onclick = () => {
                 modal.classList.add("noMostrar")
             }
+
+            const closeDeleteModal = document.getElementById("cancelDelete")
+            closeDeleteModal.onclick = () => {
+                modal.classList.add("noMostrar")
+            }
+            modal.classList.remove("noMostrar");
 
             modal.classList.remove("noMostrar");
             const botonDelete = document.getElementById("delete");
@@ -174,16 +187,16 @@ botonAddOpenModal.onclick = () => {
     <button type="button" id="closeAddEmployee" data-dismiss="modal" aria-hidden="true">X</button>
     <form class="form-modal">
       <label for="name"> Name </label>
-      <input type="text" name="name" id="name" value="" />
+      <input type="text" maxlength="50" name="name" id="name" value="" required/>
 
       <label for="email"> Email </label>
-      <input type="email" name="email" id="email" value="" />
+      <input type="email" maxlength="60" name="email" id="email" required value="" />
 
       <label for="address"> Address</label>
-      <input type="text" name="address" id="address" value="" />
+      <input type="text" name="address" pattern ="[A-Za-z0-9 _-]+" id="address" required value="" />
 
       <label for="phone">Phone </label>
-      <input type="number" name="phone" id="phone" value="" />
+      <input type="tel" name="phone" pattern="[0-9  -]+" id="phone" required value="" />
 
       <div class="botones-modal">
 
