@@ -199,51 +199,37 @@ botonAddOpenModal.onclick = () => {
     modal.classList.remove("noMostrar");
     const botonAddCloseModal = document.getElementById("addCerrar")
 
-     botonAddCloseModal.onclick = () => {
-    modal.classList.add("noMostrar")
-    const form = document.forms[0]
-    form.onsubmit = (e) => {
-        e.preventDefault()
-        let nombre = form.elements[0].value
-        let correo = form.elements[1].value
-        let direccion = form.elements[2].value
-        let telefono = form.elements[3].value
+    botonAddCloseModal.onclick = () => {
+        modal.classList.add("noMostrar")
+        const form = document.forms[0]
+        form.onsubmit = (e) => {
+            e.preventDefault()
+            let nombre = form.elements[0].value
+            let correo = form.elements[1].value
+            let direccion = form.elements[2].value
+            let telefono = form.elements[3].value
 
-        let nuevoUser = {
-            fullname: nombre,
-            email: correo,
-            address: direccion,
-            phone: telefono
+            let nuevoUser = {
+                fullname: nombre,
+                email: correo,
+                address: direccion,
+                phone: telefono
+            }
+
+            addUsers(nuevoUser)
         }
-
-        addUsers(nuevoUser)
     }
 }
-}
 
-
-// Funcion Filtrar
 const usuarioFiltrado = document.getElementById("filter")
 
+// Funcion Filtrar
 usuarioFiltrado.onkeypress = e => {
-    e.preventDefault();
     if (e.keyCode == 13) {
-        console.log(usuarioFiltrado.value)
-        // const filtrarUsuarios =(value)=> {
         fetch(`https://tp-js-2-api-wjfqxquokl.now.sh/users?search=${usuarioFiltrado.value}`)
             .then(data => data.json())
             .then(users => {
                 usersTable(users);
-                // console.log(users)
-                // let arrayFiltrados = [];
-                // arrayFiltrados = users.filter((usuario) => {
-                //     if (usuario.fullname.includes(usuarioFiltrado.value) || usuario.email.includes(usuarioFiltrado.value) || usuario.address.includes(usuarioFiltrado.value) || usuario.phone.includes(usuarioFiltrado.value))
-                //         return arrayFiltrados
-                //     mostrarUsers(arrayFiltrados)
-                // })
-            }
-            )
-        // }
+            })
     }
 }
-
