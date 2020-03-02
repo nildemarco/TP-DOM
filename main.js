@@ -1,12 +1,7 @@
-const mostrarUsers = () => {
-    fetch('https://tp-js-2-api-wjfqxquokl.now.sh/users')
-        .then(data => data.json())
-        .then(users => {
-            const contenedorTabla = document.getElementById("container-table")
-            console.log(users)
-
-            const datosTabla = users.reduce((acc, curr) => {
-                return acc + `
+const usersTable = (users) => {
+    const contenedorTabla = document.getElementById("container-table")
+    const datosTabla = users.reduce((acc, curr) => {
+        return acc + `
         <tr>
             <td><input type="checkbox" name="users" id="users"></td>
             <td>${curr.fullname}</td>
@@ -19,9 +14,9 @@ const mostrarUsers = () => {
          title="Delete">&#xE872;</i></button></td>
         </tr>`
 
-            }, '')
+    }, '')
 
-            contenedorTabla.innerHTML = `<table>
+    contenedorTabla.innerHTML = `<table>
         <tr>
         <th><input type="checkbox" name="main" id=""></th>
         <th>Name</th>
@@ -33,19 +28,19 @@ const mostrarUsers = () => {
         ${datosTabla}
         </table>`
 
-            const btnEdit = document.querySelectorAll(".botonEdit");
-            const btnDelete = document.querySelectorAll(".botonDelete");
+    const btnEdit = document.querySelectorAll(".botonEdit");
+    const btnDelete = document.querySelectorAll(".botonDelete");
 
-            btnEdit.forEach((element, ind) => {
-                element.onclick = () => {
+    btnEdit.forEach((element, ind) => {
+        element.onclick = () => {
 
-                    modal.innerHTML =
-                        `<h2>Edit Employee</h2>
+            modal.innerHTML =
+                `<h2>Edit Employee</h2>
                         <button type="button" id="closeModalEdit" data-dismiss="modal" aria-hidden="true">X</button>
                 <form class="form-modal">
 
                   <label for="name">Name</label>
-                  <input type="text" name="name" id="name" value="${users[ind].fullname}" />
+                  <input type="text" minlength="5" name="name" id="name" value="${users[ind].fullname}" />
 
                   <label for="email"> Email </label>
                   <input type="email" name="email" id="email" value="${users[ind].email}" required/>
@@ -62,41 +57,37 @@ const mostrarUsers = () => {
                     <button type="submit" id="guardar">Save</button>
                   </div>
                 </form>`
-                const closeEditModal = document.getElementById("closeModalEdit")
-                closeEditModal.onclick = () => {
-                    modal.classList.add("noMostrar")
-                }
-                modal.classList.remove("noMostrar");
+            const closeEditModal = document.getElementById("closeModalEdit")
+            closeEditModal.onclick = () => {
+                modal.classList.add("noMostrar")
+            }
+            modal.classList.remove("noMostrar");
+            const botonEditar = document.getElementById("guardar");
+            botonEditar.onclick = (e) => {
+                e.preventDefault();
+                const form = document.forms[0];
+                let nombre = form.elements[0].value;
+                let correo = form.elements[1].value;
+                let direccion = form.elements[2].value;
+                let telefono = form.elements[3].value;
 
+                let usuarioEditado = {
+                    fullname: nombre,
+                    email: correo,
+                    address: direccion,
+                    phone: telefono
+                };
 
-                    const botonEditar = document.getElementById("guardar");
+                editUsers(users[ind].id, usuarioEditado);
+                modal.classList.add("noMostrar");
+            }
+        }
+    });
 
-                    botonEditar.onclick = (e) => {
-                        e.preventDefault();
-                        const form = document.forms[0];
-                        let nombre = form.elements[0].value;
-                        let correo = form.elements[1].value;
-                        let direccion = form.elements[2].value;
-                        let telefono = form.elements[3].value;
-
-                        let usuarioEditado = {
-                            fullname: nombre,
-                            email: correo,
-                            address: direccion,
-                            phone: telefono
-                        };
-
-                        editUsers(users[ind].id, usuarioEditado);
-                        modal.classList.add("noMostrar");
-
-                    }
-                }
-            });
-            btnDelete.forEach((element, ind) => {
-                element.onclick = () => {
-
-                    modal.innerHTML =
-                        `<h2>Delete Employee</h2>
+    btnDelete.forEach((element, ind) => {
+        element.onclick = () => {
+            modal.innerHTML =
+                `<h2>Delete Employee</h2>
                         <button type="button" id="closeModal" data-dismiss="modal" aria-hidden="true">X</button>
                         <div class="bodyModal">
                         Are you sure you want to delete these Records?
@@ -106,21 +97,28 @@ const mostrarUsers = () => {
                     <button>Cancel</button>
                     <button type="submit" id="delete">Delete</button>
                   </div>`
-                    const closeModal = document.getElementById("closeModal")
-                    closeModal.onclick = () => {
-                        modal.classList.add("noMostrar")
-                    }
-                    modal.classList.remove("noMostrar");
+            const closeModal = document.getElementById("closeModal")
+            closeModal.onclick = () => {
+                modal.classList.add("noMostrar")
+            }
 
-                    const botonDelete = document.getElementById("delete");
+            modal.classList.remove("noMostrar");
+            const botonDelete = document.getElementById("delete");
 
-                    botonDelete.onclick = (e) => {
-                        e.preventDefault();
-                        deleteUsers(users[ind].id);
-                        modal.classList.add("noMostrar");
-                    }
-                }
-            });
+            botonDelete.onclick = (e) => {
+                e.preventDefault();
+                deleteUsers(users[ind].id);
+                modal.classList.add("noMostrar");
+            }
+        }
+    });
+}
+
+const mostrarUsers = () => {
+    fetch('https://tp-js-2-api-wjfqxquokl.now.sh/users')
+        .then(data => data.json())
+        .then(users => {
+            usersTable(users);
         })
 }
 
@@ -166,17 +164,10 @@ const deleteUsers = (id) => {
             console.log(usersDeleted)
             mostrarUsers();
         })
-
-
 }
 
 const botonAddOpenModal = document.getElementById("add-user")
 const modal = document.getElementById("modal")
-
-
-
-
-
 
 botonAddOpenModal.onclick = () => {
     modal.innerHTML = ` <h2>Add Employee</h2>
@@ -195,7 +186,7 @@ botonAddOpenModal.onclick = () => {
       <input type="number" name="phone" id="phone" value="" />
 
       <div class="botones-modal">
-      
+
         <button type="submit" id="cancel">Cancel</button>
         <button type="submit" id="addCerrar">Add</button>
       </div>
@@ -218,54 +209,40 @@ botonAddCloseModal.onclick = () => {
         let correo = form.elements[1].value
         let direccion = form.elements[2].value
         let telefono = form.elements[3].value
-    
+
         let nuevoUser = {
             fullname: nombre,
             email: correo,
             address: direccion,
             phone: telefono
         }
-    
+
         addUsers(nuevoUser)
-    
     }
 }
 
-
-
-
-
 // Funcion Filtrar
+const usuarioFiltrado = document.getElementById("filter")
 
-// const usuarioFiltrado = document.getElementById("filter")
-
-// usuarioFiltrado.onkeypress = e => {
-//     if(e.keyCode == 13){    
-//         console.log(usuarioFiltrado.value)
-//         // const filtrarUsuarios =(value)=> {
-//             fetch(`https://tp-js-2-api-wjfqxquokl.now.sh/users?search=${usuarioFiltrado.value}`)
-//                 .then(data => data.json())
-//                 .then(users => {
-//                     console.log(users)
-//                     let arrayFiltrados = [];
-//                     arrayFiltrados = users.filter((usuario) => {
-//                    if (usuario.fullname.includes(usuarioFiltrado.value) || usuario.email.includes(usuarioFiltrado.value) || usuario.address.includes(usuarioFiltrado.value)|| usuario.phone.includes(usuarioFiltrado.value))
-//                  return arrayFiltrados
-//                 mostrarUsers(arrayFiltrados)
-                
-        
-//           })
-       
-        
-        
-         
-//                 }
-//                 )
-                
-    
-//     // }
-  
-//   } 
-// }
-
+usuarioFiltrado.onkeypress = e => {
+    e.preventDefault();
+    if (e.keyCode == 13) {
+        console.log(usuarioFiltrado.value)
+        // const filtrarUsuarios =(value)=> {
+        fetch(`https://tp-js-2-api-wjfqxquokl.now.sh/users?search=${usuarioFiltrado.value}`)
+            .then(data => data.json())
+            .then(users => {
+                usersTable(users);
+                // console.log(users)
+                // let arrayFiltrados = [];
+                // arrayFiltrados = users.filter((usuario) => {
+                //     if (usuario.fullname.includes(usuarioFiltrado.value) || usuario.email.includes(usuarioFiltrado.value) || usuario.address.includes(usuarioFiltrado.value) || usuario.phone.includes(usuarioFiltrado.value))
+                //         return arrayFiltrados
+                //     mostrarUsers(arrayFiltrados)
+                // })
+            }
+            )
+        // }
+    }
+}
 
