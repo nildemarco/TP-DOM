@@ -57,8 +57,8 @@ const usersTable = (users) => {
                 `<h2>Delete Employee</h2>
                 <button type="button" id="closeModal" data-dismiss="modal" aria-hidden="true">X</button>
                 <div class="bodyModal">
-                    Are you sure you want to delete these Records?
-                    This action cannot be undone.
+                    <h4>Are you sure you want to delete these Records?</h4>
+                    <p>This action cannot be undone.</p>
                 </div>
                 <div class="footer">
                     <button id="cancelDelete">Cancel</button>

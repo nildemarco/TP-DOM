@@ -86,8 +86,9 @@ th, td {
     height: 20px;
     margin:5px;
     border-radius: 0 0 3px 3px;
-    border-style: outset;
-    text-align: left;
+   border:none;
+   border-bottom: 1px solid rgb(179, 178, 178);
+   text-align: left;
 }
 #address {
     height: 50px;
@@ -150,7 +151,7 @@ p {
 }
 
 
-#closeModalEdit, #closeModal , #closeAddEmployee {
+#closeModal, #close {
     size: 10px;
     top:-9px;
     right:-9px;
@@ -179,7 +180,6 @@ p {
 
 
 #filter {
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     background-color: white;
     width: 200px;
     height: 20px;
@@ -189,6 +189,12 @@ p {
 .botonEdit, .botonDelete {
     border:none;
     border-radius:2px;
+    background-color: white;
    
+}
+
+.icon-edit {
+    background-color: white;
+
 }
 
