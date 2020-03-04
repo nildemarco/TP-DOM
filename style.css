@@ -1,9 +1,8 @@
-
 body {
     margin: 30px 50px;
-    font-family:'Varela Round', sans-serif;
-    color:#566787;
-   
+    font-family: 'Varela Round', sans-serif;
+    color: #566787;
+
 }
 
 nav {
@@ -14,6 +13,7 @@ nav {
     align-items: center;
     padding: 5px 15px;
 }
+
 #add-user {
     display: flex;
     justify-content: center;
@@ -22,10 +22,11 @@ nav {
     border: 1px solid #4cae4c;
     color: #ffff;
     border-radius: 3px;
-    font-family:'Varela Round', sans-serif;
+    font-family: 'Varela Round', sans-serif;
 }
+
 .material-icons {
-    padding:5px;
+    padding: 5px;
 }
 
 #add-user:hover {
@@ -41,29 +42,34 @@ nav {
 .container-table {
     width: 100%;
 }
+
 table {
     width: 100%;
     margin: 0;
     padding: 15px;
     text-align: center;
+    border-collapse: collapse;
 }
-tr:hover {
+
+tbody tr:hover {
     background-color: #e9e9e9;
 }
 
-th, td {
+th,
+td {
     border-bottom: 1px solid #ddd;
+
 }
 
 .icon-edit {
     color: #ffc107;
-    
    
+
 }
 
 .icon-delete {
     color: #f44336;
-    
+
 }
 
 .myModal {
@@ -71,34 +77,37 @@ th, td {
     width: 300px;
     height: auto;
     position: relative;
-    left: 600px; 
+    left: 600px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     padding: 20px 30px;
     background-color: #fff;
     border-radius: 0 0 3px 3px;
     text-align: center;
     border-top: 1px solid #e4d9d9;
-    
+
 
 }
+
 .myModal input {
     width: 80%;
     height: 20px;
-    margin:5px;
+    margin: 5px;
     border-radius: 0 0 3px 3px;
-   border:none;
-   border-bottom: 1px solid rgb(179, 178, 178);
-   text-align: left;
+    border: none;
+    border-bottom: 1px solid rgb(179, 178, 178);
+    text-align: left;
 }
+
 #address {
     height: 50px;
 }
-.myModal button{
-    margin:25px;
+
+.myModal button {
+    margin: 25px;
     width: 70px;
     height: 40px;
-    font-family:'Varela Round', sans-serif;
-    border:none;
+    font-family: 'Varela Round', sans-serif;
+    border: none;
 
 }
 
@@ -106,8 +115,9 @@ th, td {
     color: #fff;
     background-color: #5bc0de;
     border-color: #46b8da;
-   
+
 }
+
 #guardar:hover {
     background-color: #0085ae;
 }
@@ -122,10 +132,10 @@ th, td {
     color: #fff;
     background-color: #5cb85c;
     border-color: #4cae4c;
-    
+
 }
 
-#addCerrar:hover{
+#addCerrar:hover {
     background-color: #0d900d;
 }
 
@@ -138,7 +148,7 @@ th, td {
 }
 
 p {
-    color:#8a6d3b;
+    color: #8a6d3b;
     font-size: 14px;
 }
 
@@ -151,15 +161,16 @@ p {
 }
 
 
-#closeModal, #close {
+#closeModal,
+#close {
     size: 10px;
-    top:-9px;
-    right:-9px;
-    position:absolute;
-    cursor:pointer;
-    width:25px; 
-    height:25px;
-    background-color:#e4d9d9;
+    top: -9px;
+    right: -9px;
+    position: absolute;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    background-color: #e4d9d9;
     border-style: none;
 }
 
@@ -183,18 +194,15 @@ p {
     background-color: white;
     width: 200px;
     height: 20px;
-    font-family:'Varela Round', sans-serif;
-   
-}
-.botonEdit, .botonDelete {
-    border:none;
-    border-radius:2px;
-    background-color: white;
-   
-}
-
-.icon-edit {
-    background-color: white;
+    font-family: 'Varela Round', sans-serif;
 
 }
 
+.botonEdit,
+.botonDelete {
+    border: none;
+    border-radius: 2px;
+    background: rgba(253, 253, 253, 0)
+
+
+}

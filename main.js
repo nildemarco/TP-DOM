@@ -17,7 +17,7 @@ const usersTable = (users) => {
     contenedorTabla.innerHTML = `<table>
                                     <thead>
                                         <tr>
-                                            <th><input type="checkbox" name="main" id=""></th>
+                                            <th></th>
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Adress</th>
